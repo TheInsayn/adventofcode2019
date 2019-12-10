@@ -61,7 +61,7 @@ def get_step_count(points1, points2, intersection):
     return index1 + 1 + index2 + 1
 
 
-class Day3(Challenge):
+class Day03(Challenge):
     input_file = 'inputs/day03.txt'
 
     def part1(self):

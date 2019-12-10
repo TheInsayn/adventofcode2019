@@ -1,7 +1,7 @@
 from challenges.challenge import Challenge
 
 
-class Day1(Challenge):
+class Day01(Challenge):
     input_file = 'inputs/day01.txt'
 
     def part1(self):

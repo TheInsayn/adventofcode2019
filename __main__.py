@@ -1,6 +1,7 @@
-from challenges.day01 import Day1
-from challenges.day02 import Day2
-from challenges.day03 import Day3
+from challenges.day01 import Day01
+from challenges.day02 import Day02
+from challenges.day03 import Day03
+from challenges.day04 import Day04
 
 
 def call_parts(challenge):
@@ -9,9 +10,10 @@ def call_parts(challenge):
 
 
 def main():
-    call_parts(Day1())
-    call_parts(Day2())
-    call_parts(Day3())
+    # call_parts(Day01())
+    # call_parts(Day02())
+    # call_parts(Day03())
+    call_parts(Day04())
 
 
 if __name__ == "__main__":
