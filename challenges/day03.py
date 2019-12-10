@@ -22,20 +22,36 @@ def get_lines(wire):
     return lines
 
 
-def get_grid(max_size):
-    rows = list()
-    for line in range(0, max_size):
-        rows.append('.' * max_size)
-    return rows
+def get_points(lines):
+    points = set()
+    x = 0
+    y = 0
+    for line in lines:
+        if line.direction == 'U':
+            for i in range(0, line.length):
+                y += 1
+                points.add((x, y))
+        elif line.direction == 'D':
+            for i in range(0, line.length):
+                y -= 1
+                points.add((x, y))
+        elif line.direction == 'L':
+            for i in range(0, line.length):
+                x -= 1
+                points.add((x, y))
+        elif line.direction == 'R':
+            for i in range(0, line.length):
+                x += 1
+                points.add((x, y))
+    return points
 
 
-def get_max_size(lines):
-    return max(x.length for x in lines)
+def get_intersections(wire_points):
+    return wire_points[0].intersection(wire_points[1])
 
 
-def fill_grid(grid, lines):
-    # TODO
-    pass
+def get_manhattan_dist(intersection):
+    return abs(intersection[0]) + abs(intersection[1])
 
 
 class Day3(Challenge):
@@ -45,14 +61,17 @@ class Day3(Challenge):
         with open(self.input_file) as f:
             all_wires = f.readlines()
         all_wires = [w.strip() for w in all_wires]
-        print(all_wires)
+        wire_points = list()
         for wire in all_wires:
-            print(wire)
             lines = get_lines(wire)
-            max_size = get_max_size(lines)
-            grid = get_grid(max_size)
-            print(grid)
-            grid = fill_grid(grid, lines)
+            points = get_points(lines)
+            wire_points.append(points)
+        intersections = get_intersections(wire_points)
+        # print("intersections:", intersections)
+        manhattan_dists = [get_manhattan_dist(i) for i in intersections]
+        # print("manhattan distances:", manhattan_dists)
+        # print("minimum:", min(manhattan_dists))
+        self.print_result(min(manhattan_dists))
 
     def part2(self):
         pass
